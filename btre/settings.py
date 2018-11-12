@@ -132,6 +132,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'btre/static')
 ]
 
+# For Deploy on Heroku
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 # Media folder Location
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
@@ -148,4 +151,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'showkat834@gmail.com'
 EMAIL_HOST_PASSWORD = '01020322mar25dec'
 EMAIL_USE_TLS = True
+
+# For Deploy on Heroku
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
